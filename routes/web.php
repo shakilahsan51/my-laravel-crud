@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 //This Route is for soft deleting
 Route::get('/posts/trash', [PostController::class, 'trashed'])->name('posts.trashed');
-
-
+Route::get('/posts/{id}/restore', [PostController::class, 'restore'])->name('posts.restore');
+Route::delete('/posts/{id}/force-delete', [PostController::class, 'forceDelete'])->name('post.force-delete');
 //This is Resource Controller Route
 Route::resource('posts', PostController::class);

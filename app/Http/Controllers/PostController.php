@@ -170,9 +170,28 @@ class PostController extends Controller
     }
 
 
+
     public function trashed()
     {
         $posts = Post::onlyTrashed()->get();
         return view('trashed', compact('posts'));
+    }
+
+
+    public function restore($id)
+    {
+        $post = Post::onlyTrashed()->findOrFail($id);
+        $post->restore();  //restore Method
+        return redirect()->back();
+    }
+
+
+
+    public function forceDelete($id)
+    {
+        $post = Post::onlyTrashed()->findOrFail($id);
+        Storage::disk('public')->delete($post->image);
+        $post->forceDelete(); //Force Delete Method
+        return redirect()->back();
     }
 }

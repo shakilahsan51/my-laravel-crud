@@ -39,8 +39,9 @@
 
                         <td class="text-center">
                           <div class="d-flex justify-content-center align-items-center gap-2">
-                              <a class="btn btn-sm btn-primary px-3 d-inline-block" href="">Restore</a>
-                              <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="d-inline-block">
+                              <a class="btn btn-sm btn-primary px-3 d-inline-block" href="{{ route('posts.restore', $post->id) }}">Restore</a>
+
+                              <form action="{{ route('post.force-delete', $post->id) }}" method="POST" class="d-inline-block">
                                   @csrf
                                   @method('DELETE')
                                   <button class="btn btn-sm btn-danger">Delete</button> 
